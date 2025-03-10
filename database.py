@@ -1,12 +1,14 @@
 import sqlite3
 import os
 from datetime import datetime
+from config import DATABASE_PATH
 
-DB_FILE = 'instance/pompiers.db'
+# Utiliser le chemin de la base de données depuis la configuration
+DB_FILE = DATABASE_PATH
 
 def init_db():
-    # Assurer que le dossier instance existe
-    os.makedirs('instance', exist_ok=True)
+    # Assurer que le dossier parent existe
+    os.makedirs(os.path.dirname(DB_FILE), exist_ok=True)
     
     conn = sqlite3.connect(DB_FILE)
     c = conn.cursor()
