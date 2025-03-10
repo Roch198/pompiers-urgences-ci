@@ -8,7 +8,14 @@ from PIL import Image
 import database
 from config import *
 
+# Initialiser la base de données au démarrage
+database.init_db()
+
 app = Flask(__name__)
+
+# Créer les dossiers nécessaires
+os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['MAX_CONTENT_LENGTH'] = MAX_CONTENT_LENGTH
 app.config['SECRET_KEY'] = SECRET_KEY
@@ -187,8 +194,4 @@ def supprimer_urgence(urgence_id):
         return jsonify({'success': False, 'error': str(e)}), 400
 
 if __name__ == '__main__':
-    # Initialiser la base de données au démarrage
-    database.init_db()
-    # Créer le dossier uploads s'il n'existe pas
-    os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
     app.run(port=8080, debug=True)
