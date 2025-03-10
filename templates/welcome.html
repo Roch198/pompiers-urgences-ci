@@ -1,0 +1,146 @@
+{% extends "base.html" %}
+
+{% block title %}Bienvenue{% endblock %}
+
+{% block extra_css %}
+<style>
+    .hero-section {
+        background: linear-gradient(rgba(220, 53, 69, 0.9), rgba(200, 35, 51, 0.9)), url('https://images.unsplash.com/photo-1599491143816-88818ad6d040?ixlib=rb-4.0.1');
+        background-size: cover;
+        color: white;
+        padding: 100px 0;
+        margin-bottom: 50px;
+    }
+    .feature-card {
+        border: none;
+        border-radius: 10px;
+        transition: transform 0.3s;
+        height: 100%;
+    }
+    .feature-card:hover {
+        transform: translateY(-5px);
+    }
+    .feature-icon {
+        font-size: 2.5rem;
+        color: #dc3545;
+        margin-bottom: 20px;
+    }
+    .action-buttons {
+        margin-top: 30px;
+    }
+    .action-buttons .btn {
+        margin: 0 10px;
+        padding: 12px 30px;
+        font-size: 1.1rem;
+    }
+    .emergency-numbers {
+        background-color: #f8f9fa;
+        padding: 30px 0;
+        margin-top: 50px;
+    }
+    .number-badge {
+        font-size: 1.2rem;
+        padding: 10px 20px;
+        margin: 0 10px;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="hero-section text-center">
+    <div class="container">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Flag_of_C%C3%B4te_d%27Ivoire.svg/1200px-Flag_of_C%C3%B4te_d%27Ivoire.svg.png" alt="Drapeau CI" style="width: 60px; margin-bottom: 20px;">
+        <h1 class="display-4 mb-4">Sapeurs-Pompiers d'Abidjan</h1>
+        <p class="lead mb-4">Une application moderne pour signaler et gérer les urgences à Abidjan</p>
+        <div class="action-buttons">
+            <a href="{{ url_for('register') }}" class="btn btn-light btn-lg">S'inscrire</a>
+            <a href="{{ url_for('login') }}" class="btn btn-outline-light btn-lg">Se connecter</a>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row mb-5">
+        <div class="col-md-4 mb-4">
+            <div class="card feature-card shadow-sm">
+                <div class="card-body text-center">
+                    <i class="fas fa-fire-extinguisher feature-icon"></i>
+                    <h3>Signalement Rapide</h3>
+                    <p>Signalez rapidement une urgence avec tous les détails nécessaires pour une intervention efficace.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card feature-card shadow-sm">
+                <div class="card-body text-center">
+                    <i class="fas fa-map-marked-alt feature-icon"></i>
+                    <h3>Localisation Précise</h3>
+                    <p>Fournissez une adresse précise pour permettre aux pompiers d'intervenir rapidement.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card feature-card shadow-sm">
+                <div class="card-body text-center">
+                    <i class="fas fa-camera feature-icon"></i>
+                    <h3>Photos d'Urgence</h3>
+                    <p>Ajoutez des photos pour aider les pompiers à mieux évaluer la situation avant leur arrivée.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="text-center mb-5">
+        <h2>Comment ça marche ?</h2>
+        <div class="row mt-4">
+            <div class="col-md-3">
+                <div class="card feature-card">
+                    <div class="card-body">
+                        <div class="h1 mb-3">1</div>
+                        <h4>Inscrivez-vous</h4>
+                        <p>Créez un compte en tant que civil ou pompier</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card feature-card">
+                    <div class="card-body">
+                        <div class="h1 mb-3">2</div>
+                        <h4>Connectez-vous</h4>
+                        <p>Accédez à votre espace personnel</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card feature-card">
+                    <div class="card-body">
+                        <div class="h1 mb-3">3</div>
+                        <h4>Signalez</h4>
+                        <p>Décrivez l'urgence avec précision</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card feature-card">
+                    <div class="card-body">
+                        <div class="h1 mb-3">4</div>
+                        <h4>Suivez</h4>
+                        <p>Restez informé de l'intervention</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="emergency-numbers py-5 bg-light">
+    <div class="container text-center">
+        <h2 class="mb-4">Numéros d'urgence</h2>
+        <div>
+            <span class="badge bg-danger number-badge">180</span>
+            <span class="badge bg-danger number-badge">01 80 13 28</span>
+        </div>
+        <p class="mt-3 text-muted">Disponible 24h/24 et 7j/7</p>
+    </div>
+</div>
+{% endblock %}
