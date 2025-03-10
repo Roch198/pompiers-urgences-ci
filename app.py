@@ -5,7 +5,7 @@ from werkzeug.utils import secure_filename
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 from PIL import Image
-import database
+import database_pg as database
 from config import *
 
 # Initialiser la base de données au démarrage
@@ -38,8 +38,10 @@ class User(UserMixin):
 
 @login_manager.user_loader
 def load_user(user_id):
-    user_data = database.get_user_by_id(int(user_id))
-    return User(user_data) if user_data else None
+    user_data = database.get_user_by_id(user_id)
+    if user_data:
+        return User(user_data)
+    return None
 
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS

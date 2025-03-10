@@ -1,11 +1,23 @@
 services:
   - type: web
-    name: pompiers-app
+    name: pompiers-urgences-ci
     env: python
     buildCommand: pip install -r requirements.txt
     startCommand: gunicorn app:app
     envVars:
       - key: PYTHON_VERSION
-        value: 3.11.0
+        value: 3.11.11
       - key: SECRET_KEY
         generateValue: true
+      - key: POMPIER_PASSWORD
+        value: Pompier2025!
+      - key: UPLOAD_FOLDER
+        value: uploads
+      - key: DATABASE_URL
+        fromDatabase:
+          name: pompiers_db
+          property: connectionString
+
+databases:
+  - name: pompiers_db
+    plan: free
