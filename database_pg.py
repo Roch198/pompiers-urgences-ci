@@ -5,7 +5,7 @@ from datetime import datetime
 from werkzeug.security import generate_password_hash
 from config import POMPIER_PASSWORD
 
-DATABASE_URL = os.environ.get('DATABASE_URL')
+DATABASE_URL = os.getenv("DATABASE_URL")
 
 def get_db():
     conn = psycopg2.connect(DATABASE_URL)

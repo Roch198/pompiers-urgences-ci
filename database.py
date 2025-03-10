@@ -1,7 +1,8 @@
 import sqlite3
 import os
 from datetime import datetime
-from config import DATABASE_PATH
+from config import DATABASE_PATH, POMPIER_PASSWORD
+from werkzeug.security import generate_password_hash
 
 # Utiliser le chemin de la base de données depuis la configuration
 DB_FILE = DATABASE_PATH
@@ -38,6 +39,13 @@ def init_db():
             photo TEXT
         )
     ''')
+    
+    # Créer un compte pompier par défaut s'il n'existe pas
+    try:
+        c.execute('INSERT OR IGNORE INTO users (username, password_hash, role, telephone) VALUES (?, ?, ?, ?)',
+                 ('pompier1', generate_password_hash(POMPIER_PASSWORD), 'pompier', '0123456789'))
+    except Exception as e:
+        print(f"Erreur lors de la création du compte pompier par défaut : {e}")
     
     conn.commit()
     conn.close()
